@@ -37,3 +37,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## ng g m Main --routing
 ## ng g m Auth --routing
+
+## https://console.firebase.google.com/ -- "Criar o seu projeto no firebase"
