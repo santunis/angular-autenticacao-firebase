@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    "Dados do firebase aqui - apikey"
+    apikey: "Dados do firebase aqui - apikey"
   }
 };
 
