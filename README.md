@@ -40,6 +40,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## https://console.firebase.google.com/ -- "Criar o seu projeto no firebase"
 
-## ng g s main/main
-## ng g c main/people
-## ng g c NotFound -m app
+# ng g s main/main
+# ng g c main/people
+# ng g c NotFound -m app
+
+## Modulo auth
+
+# ng g c auth/login -m auth
+# ng g c auth/register -m auth
+
+## Autenticando com FireAuth
+
+# ng g s auth/auth
