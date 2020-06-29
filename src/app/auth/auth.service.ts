@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { User } from './user';
-import { Observable, from, throwError } from 'rxjs';
+import { Observable, from, throwError, of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,20 @@ export class AuthService {
 
   logout() {
     this.afAuth.signOut();
+  }
+
+  getUser() : Observable<User> {
+    return this.afAuth.authState
+      .pipe(
+        switchMap(u => (u) ? this.userCollection.doc<User>(u.uid).valueChanges() : of(null))
+      )
+  }
+
+  authenticated() : Observable<boolean> {
+    return this.afAuth.authState
+      .pipe(
+        map(u => (u) ? true : false)
+      )
   }
 
 }
