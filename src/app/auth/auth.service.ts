@@ -57,7 +57,38 @@ export class AuthService {
       )
   }
 
+  async updateUserData(u: auth.UserCredential) {
+    try {
+      const newUser: User = {
+        firstname: u.user.displayName,
+        lastname: '', address: '', city: '',
+        state: '', phone: '', mobilephone: '',
+        email: u.user.email,
+        password: '', id: u.user.uid
+      };
+      await this.userCollection.doc(u.user.uid).set(newUser);
+      return newUser;
+    } catch(e) {
+      throw new Error(e);
+    }
+  }
+
+  async loginWithGoogleAccount() {
+    try {
+      const provider = new auth.GoogleAuthProvider();
+      let credentials: auth.UserCredential = await this.afAuth.signInWithPopup(provider);
+      let user: User = await this.updateUserData(credentials);
+      return user;
+    } catch(e) {
+      throw new Error(e);
+    }
+  }
+
   loginGoogle(): Observable<User> {
+    return from(this.loginWithGoogleAccount());
+  }
+
+  oldLoginGoogle(): Observable<User> {
     const provider = new auth.GoogleAuthProvider();
     return from(this.afAuth.signInWithPopup(provider))
       .pipe(
