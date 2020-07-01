@@ -52,3 +52,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Autenticando com FireAuth
 
 # ng g s auth/auth
+
+## Login
+
+# ng g s auth/auth-guard
